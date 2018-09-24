@@ -14,6 +14,14 @@
 
 <script type="text/javascript">
 
+	var SCREEN_X= 1366;
+	var SCREEN_X_MID= SCREEN_X/2;
+	
+	var SCREEN_Y=768;
+	var SCREEN_Y_MID=SCREEN_Y/2;
+	
+	var GRAVITY=SCREEN_Y/2;
+
     var config = {
         type: Phaser.AUTO,
         width: 800,
@@ -41,6 +49,8 @@
     {
         this.load.image('sky', 'assets/sky.png');
         this.load.image('ground', 'assets/platform.png');
+        this.load.image('beddings', 'assets/beddings.png');
+        
         this.load.image('sand_ground', 'assets/ground.png');
         this.load.image('star', 'assets/star.png');
         this.load.image('bomb', 'assets/bomb.png');
@@ -54,9 +64,11 @@
         
         platforms = this.physics.add.staticGroup();
 
+
+		
         //platforms.create(400, 568, 'ground').setScale(2).refreshBody();
         platforms.create(400, 568, 'sand_ground').setScale(2).refreshBody();
-
+		
         platforms.create(600, 400, 'ground');
         platforms.create(50, 250, 'ground');
         platforms.create(750, 220, 'ground');
@@ -98,12 +110,9 @@
         });
 
         stars.children.iterate(function (child) {
-
             child.setBounce(1);
             child.setVelocity(Phaser.Math.Between(-200, 200), 1);
             child.setCollideWorldBounds(true);
-
-
         });
 
         this.physics.add.collider(stars, platforms);
@@ -116,6 +125,7 @@
         this.physics.add.collider(bombs, platforms);
 
         this.physics.add.collider(player, bombs, hitBomb, null, this);
+        this.add.image(400, 516, 'beddings').setScale(2);
 
     }
 
@@ -179,7 +189,7 @@
     {
         this.physics.pause();
 
-        player.setTint(0xff0000);
+        bomb.setTint(0xff0000);
 
         player.anims.play('turn');
 
