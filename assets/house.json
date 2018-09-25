@@ -1,0 +1,62 @@
+{
+	"textures": [
+		{
+			"image": "house.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1684,
+				"h": 271
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "ground.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1366,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1366,
+						"h": 64
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 1366,
+						"h": 64
+					}
+				},
+				{
+					"filename": "house1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 316,
+						"h": 270
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 1,
+						"w": 314,
+						"h": 269
+					},
+					"frame": {
+						"x": 1369,
+						"y": 1,
+						"w": 314,
+						"h": 269
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:92df3c47f2f341e7fc20aa4d5e74da8d:a58cbcd3647b9a2a4f4f87c4c26d0c70:012e186cbf003f2e084d2fc78cfd7593$"
+	}
+}
