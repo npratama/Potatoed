@@ -20,7 +20,11 @@
 	var SCREEN_Y=768;
 	var SCREEN_Y_MID=SCREEN_Y/2;
 	
-	var GRAVITY=SCREEN_Y/4;
+	var GRAVITY=SCREEN_Y/2;
+
+	var BOX_SIZE_X=21;
+	var BOX_SIZE_Y=21;
+
 
     var config = {
         type: Phaser.AUTO,
@@ -50,7 +54,9 @@
         this.load.image('sky', 'assets/sky.png');
         this.load.image('ground', 'assets/platform.png');
         this.load.image('beddings', 'assets/beddings.png');
+        this.load.image('box', 'assets/box.png');
         
+
         this.load.image('sand_ground', 'assets/ground.png');
         this.load.image('star', 'assets/star.png');
         this.load.image('bomb', 'assets/bomb.png');
@@ -69,6 +75,15 @@
         //platforms.create(400, 568, 'ground').setScale(2).refreshBody();
         platforms.create(SCREEN_X_MID, SCREEN_Y-32, 'sand_ground');
 		
+		 
+		for (var k = 1; k <= 4; k++) { 
+			for (var i = 1; i <= 4; i++) {
+	    		platforms.create(SCREEN_X_MID+(BOX_SIZE_X*k), SCREEN_Y_MID+100+(BOX_SIZE_Y*i), 'box');
+			}
+		}
+		
+
+
         //platforms.create(600, 400, 'ground');
         //platforms.create(50, 250, 'ground');
         //platforms.create(750, 220, 'ground');
