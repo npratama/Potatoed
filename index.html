@@ -38,6 +38,8 @@
 	var BTN_RADIUS=70;
 
 	var bomb;
+=======
+>>>>>>> a08b27f4ce3e592c09f45e1c9c52a26e5ca59977
 
     var config = {
         type: Phaser.AUTO,
@@ -222,7 +224,12 @@
 
         scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
+<<<<<<< HEAD
 		
+=======
+		debug_text = this.add.text(16, 116, 'debug_text: 0', { fontSize: '32px', fill: '#000' });
+
+>>>>>>> a08b27f4ce3e592c09f45e1c9c52a26e5ca59977
         bombs = this.physics.add.group();
 
         this.physics.add.collider(bombs, platforms);
@@ -238,6 +245,7 @@
         var sprite1 = this.add.sprite(BTN_UP_X, BTN_UP_Y, 'btn_up');
         var sprite2 = this.add.sprite(BTN_LEFT_X,  BTN_LEFT_Y, 'btn_left'); 
         var sprite3 = this.add.sprite(BTN_RIGHT_X,  BTN_RIGHT_Y, 'btn_right');
+<<<<<<< HEAD
 
         bubble1=this.add.sprite(player.x, player.y, 'bubble1');
         debug_text = this.add.text(16, 116, "I\'m hungweee !", { fontSize: '20px', fill: '#000' ,fontFamily: "comic sans"});
@@ -249,6 +257,8 @@
         
          
         bomb = bombs.create(-10, 16, 'bomb');
+=======
+>>>>>>> a08b27f4ce3e592c09f45e1c9c52a26e5ca59977
         graphics = this.add.graphics();
     }
 
@@ -264,6 +274,7 @@
 
     function update ()
     {
+<<<<<<< HEAD
     	bubble1.x=player.x+50;
     	bubble1.y=player.y-90;
     	debug_text.x=player.x-20;
@@ -292,11 +303,33 @@
 
         	if((this.input.pointer2.x<(BTN_UP_X+BTN_RADIUS)&&this.input.pointer2.x>(BTN_UP_X-BTN_RADIUS))&&player.body.touching.down){
             	player.setVelocityY(-420);
+=======
+       
+        if(this.input.pointer1.isDown)
+        {
+        	 debug_text.setText('Down: ' +this.input.pointer1.x+": "+SCREEN_X_MID+SCREEN_X_MID*0.9);
+        	if((this.input.pointer1.x<(BTN_RIGHT_X+BTN_RADIUS)&&this.input.pointer1.x>(BTN_RIGHT_X-BTN_RADIUS))){
+            	player.setVelocityX(160);
+            	player.anims.play('right', true);
+        	}else if((this.input.pointer1.x<(BTN_LEFT_X+BTN_RADIUS)&&this.input.pointer1.x>(BTN_LEFT_X-BTN_RADIUS))){
+            	player.setVelocityX(-160);
+            	player.anims.play('left', true);
+        	} else if((this.input.pointer1.x<(BTN_UP_X+BTN_RADIUS)&&this.input.pointer1.x>(BTN_UP_X-BTN_RADIUS))&&player.body.touching.down){
+            	player.setVelocityY(-330);
+        	}
+
+        	if((this.input.pointer2.x<(BTN_UP_X+BTN_RADIUS)&&this.input.pointer2.x>(BTN_UP_X-BTN_RADIUS))&&player.body.touching.down){
+            	player.setVelocityY(-330);
+>>>>>>> a08b27f4ce3e592c09f45e1c9c52a26e5ca59977
         	}
         } 
         else
 		{
+<<<<<<< HEAD
  			//debug_text.setText('Up: ' +this.input.pointer1.x+": "+SCREEN_X_MID+SCREEN_X_MID*0.9);
+=======
+ 			debug_text.setText('Up: ' +this.input.pointer1.x+": "+SCREEN_X_MID+SCREEN_X_MID*0.9);
+>>>>>>> a08b27f4ce3e592c09f45e1c9c52a26e5ca59977
         	this.input.pointer1.x=0;this.input.pointer2.x=0;
 		    player.setVelocityX(0);
 		    player.anims.play('turn');
@@ -304,7 +337,11 @@
 
 		if (cursors.left.isDown)
         {
+<<<<<<< HEAD
             player.setVelocityX(-200);
+=======
+            player.setVelocityX(-160);
+>>>>>>> a08b27f4ce3e592c09f45e1c9c52a26e5ca59977
             player.anims.play('left', true);
         }
         else if (cursors.right.isDown)
@@ -315,8 +352,16 @@
        
         if (cursors.up.isDown && player.body.touching.down)
         {
+<<<<<<< HEAD
             player.setVelocityY(-420);
         } 
+=======
+            player.setVelocityY(-330);
+        } 
+
+		
+
+>>>>>>> a08b27f4ce3e592c09f45e1c9c52a26e5ca59977
        
     }
 
