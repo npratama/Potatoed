@@ -26,6 +26,16 @@
 	var BOX_SIZE_X=21;
 	var BOX_SIZE_Y=21;
 
+	var BTN_UP_X=(SCREEN_X_MID-SCREEN_X_MID*0.8);
+	var BTN_UP_Y=(SCREEN_Y_MID*1.7);
+
+	var BTN_LEFT_X=(SCREEN_X_MID+SCREEN_X_MID*0.5);
+	var BTN_LEFT_Y=(SCREEN_Y_MID*1.7);
+
+	var BTN_RIGHT_X=(SCREEN_X_MID+SCREEN_X_MID*0.8);
+	var BTN_RIGHT_Y=(SCREEN_Y_MID*1.7);
+
+	var BTN_RADIUS=70;
 
     var config = {
         type: Phaser.AUTO,
@@ -181,7 +191,7 @@
         this.physics.add.collider(player, platforms);
 
         cursors = this.input.keyboard.createCursorKeys();
-
+        
         stars = this.physics.add.group({
             key: 'star',
             repeat: 10,
@@ -199,6 +209,8 @@
 
         scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
+		debug_text = this.add.text(16, 116, 'debug_text: 0', { fontSize: '32px', fill: '#000' });
+
         bombs = this.physics.add.group();
 
         this.physics.add.collider(bombs, platforms);
@@ -209,25 +221,44 @@
         //control
         this.input.addPointer(3);
 
-        var sprite1 = this.add.sprite(100, SCREEN_Y_MID*1.7, 'btn_up');
-        var sprite2 = this.add.sprite(SCREEN_X_MID*1.7,  SCREEN_Y_MID*1.7, 'btn_left'); 
-        var sprite3 = this.add.sprite(SCREEN_X_MID*1.9,  SCREEN_Y_MID*1.7, 'btn_right');
+
+        var sprite1 = this.add.sprite(BTN_UP_X, BTN_UP_Y, 'btn_up');
+        var sprite2 = this.add.sprite(BTN_LEFT_X,  BTN_LEFT_Y, 'btn_left'); 
+        var sprite3 = this.add.sprite(BTN_RIGHT_X,  BTN_RIGHT_Y, 'btn_right');
         graphics = this.add.graphics();
     }
 
     function update ()
     {
-        
-        if(this.input.pointer1.isDown ||this.input.pointer1.x>(SCREEN_X_MID*1.9))
+       
+        if(this.input.pointer1.isDown)
         {
-            player.setVelocityX(160);
-            player.anims.play('right', true);
-        }
+        	 debug_text.setText('Down: ' +this.input.pointer1.x+": "+SCREEN_X_MID+SCREEN_X_MID*0.9);
+        	if((this.input.pointer1.x<(BTN_RIGHT_X+BTN_RADIUS)&&this.input.pointer1.x>(BTN_RIGHT_X-BTN_RADIUS))){
+            	player.setVelocityX(160);
+            	player.anims.play('right', true);
+        	}else if((this.input.pointer1.x<(BTN_LEFT_X+BTN_RADIUS)&&this.input.pointer1.x>(BTN_LEFT_X-BTN_RADIUS))){
+            	player.setVelocityX(-160);
+            	player.anims.play('left', true);
+        	} else if((this.input.pointer1.x<(BTN_UP_X+BTN_RADIUS)&&this.input.pointer1.x>(BTN_UP_X-BTN_RADIUS))&&player.body.touching.down){
+            	player.setVelocityY(-330);
+        	}
 
-        if (cursors.left.isDown)
+        	if((this.input.pointer2.x<(BTN_UP_X+BTN_RADIUS)&&this.input.pointer2.x>(BTN_UP_X-BTN_RADIUS))&&player.body.touching.down){
+            	player.setVelocityY(-330);
+        	}
+        } 
+        else
+		{
+ 			debug_text.setText('Up: ' +this.input.pointer1.x+": "+SCREEN_X_MID+SCREEN_X_MID*0.9);
+        	this.input.pointer1.x=0;this.input.pointer2.x=0;
+		    player.setVelocityX(0);
+		    player.anims.play('turn');
+		}	
+
+		if (cursors.left.isDown)
         {
             player.setVelocityX(-160);
-
             player.anims.play('left', true);
         }
         else if (cursors.right.isDown)
@@ -236,17 +267,15 @@
 
             player.anims.play('right', true);
         }
-        else
-        {
-            player.setVelocityX(0);
-
-            player.anims.play('turn');
-        }
-
+       
         if (cursors.up.isDown && player.body.touching.down)
         {
             player.setVelocityY(-330);
-        }
+        } 
+
+		
+
+       
     }
 
     function collectStar (player, star)
