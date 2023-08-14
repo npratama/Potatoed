@@ -32,7 +32,7 @@ let stars;
 const star = new Star();
 
 // Controller
-let cursors;
+let key;
 const control = new Control(); 
 
 // Player
@@ -51,13 +51,10 @@ const platform = new Platform();
 
 var scoreText;
 var timedEvent;
-var initEvent;
 var init=0;
-  var music;
 
 let startBtn;
 let stopBtn;
-
 let bubble1;
 let text;
 
@@ -146,7 +143,8 @@ function create ()
     star.init(stars, this.physics, score, bomb);
 
     //set control
-    control.init(control, cursors, this.input);
+    control.init(control, key, this.input);
+    // put button icon for touch control
     var sprite1 = this.add.sprite(Constants.BTN_UP_X, Constants.BTN_UP_Y, 'btn_up');
     var sprite2 = this.add.sprite(Constants.BTN_LEFT_X,  Constants.BTN_LEFT_Y, 'btn_left'); 
     var sprite3 = this.add.sprite(Constants.BTN_RIGHT_X,  Constants.BTN_RIGHT_Y, 'btn_right');
@@ -168,13 +166,13 @@ function update ()
     scoreText.setText('Score: ' + score.number);
 
     //player movement handler
-    control.Movement(player1.players, this.input, cursors);
+    control.Movement(player1.players, this.input, key);
 
     //check player collider
     player1.checkCollider(platform.platform);
 
     //check star collider
-    star.checkCollider(platform.platform, player1.players, cursors);
+    star.checkCollider(platform.platform, player1.players, key);
 
     //check bomb collider
     bomb.checkCollider(platform.platform, player1.players, stars);

@@ -2,15 +2,15 @@ import * as Constants from "./Constants.js";
 
 export class Control {
     control;
-    cursors;
+    key;
     input;
 
-    init(control, cursors, input){
+    init(control, key, input){
         this.control = control ;
-        this.cursors = cursors;
+        this.key = key;
         this.input = input;
 
-        this.cursors = this.input.keyboard.createCursorKeys();
+        this.key = this.input.keyboard.createCursorKeys();
         this.input.addPointer(3);
     }
 
@@ -35,6 +35,7 @@ export class Control {
             }
         } 
         else
+        // switch to "neutral position"
         {
             input.pointer1.x=0;
             input.pointer2.x=0;
@@ -42,18 +43,19 @@ export class Control {
             // player.anims.play('turn');
         }	
 
-        if (this.cursors.left.isDown)
+        // if keyboard left pressed
+        if (this.key.left.isDown)
         {
             player.setVelocityX(-200);
             player.anims.play('left', true);
         }
-        else if (this.cursors.right.isDown)
+        else if (this.key.right.isDown)
         {
             player.setVelocityX(200);
             player.anims.play('right', true);
         }
         
-        if (this.cursors.up.isDown && player.body.touching.down)
+        if (this.key.up.isDown && player.body.touching.down)
         {
             player.setVelocityY(-420);
         } 
