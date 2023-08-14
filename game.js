@@ -151,15 +151,12 @@ function create ()
     var sprite2 = this.add.sprite(Constants.BTN_LEFT_X,  Constants.BTN_LEFT_Y, 'btn_left'); 
     var sprite3 = this.add.sprite(Constants.BTN_RIGHT_X,  Constants.BTN_RIGHT_Y, 'btn_right');
 
-
     // update score
     scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     scoreText.setText('Score: ' + score.number);
    
     bubble1=this.add.sprite(player1.players.x, player1.players.y, 'bubble1');
     text = this.add.text(16, 116, "   Me hungry !", { fontSize: '20px', fill: '#000' ,fontFamily: "comic sans"});
-
-
 
     timedEvent = this.time.delayedCall(3000, onEvent, [], this);
 }
@@ -192,7 +189,7 @@ function update ()
     text.x = player1.players.x-20;
     text.y = player1.players.y-120;
 
-    // if(bomb.over) reloadGame();
+    if(bomb.over)  this.time.delayedCall(3000, reloadGame, [], this);
 }
 
 function reloadGame(){
