@@ -161,10 +161,6 @@ function create ()
     timedEvent = this.time.delayedCall(3000, onEvent, [], this);
 }
 
-function onEvent(){
-    text.visible = false;	
-    bubble1.visible = false;
-}
 
 function update ()
 {
@@ -195,6 +191,12 @@ function update ()
 function reloadGame(){
     // gameOver = false;
     // music.stop();
+    scoreText.setText('Score: ' + score.number);
     score.number = 0;
     this.scene.restart();
+}
+
+function onEvent(){
+    text.visible = false;	
+    bubble1.visible = false;
 }
