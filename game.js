@@ -159,14 +159,7 @@ function create ()
     bubble1=this.add.sprite(player1.players.x, player1.players.y, 'bubble1');
     text = this.add.text(16, 116, "   Me hungry !", { fontSize: '20px', fill: '#000' ,fontFamily: "comic sans"});
 
-    //check player collider
-    player1.checkCollider(platform.platform);
 
-    //check star collider
-    star.checkCollider(platform.platform, player1.players, cursors);
-
-    //check bomb collider
-    bomb.checkCollider(platform.platform, player1.players, stars);
 
     timedEvent = this.time.delayedCall(3000, onEvent, [], this);
 }
@@ -181,7 +174,17 @@ function update ()
     // set score
     scoreText.setText('Score: ' + score.number);
 
+    //player movement handler
     control.Movement(player1.players, this.input, cursors);
+
+    //check player collider
+    player1.checkCollider(platform.platform);
+
+    //check star collider
+    star.checkCollider(platform.platform, player1.players, cursors);
+
+    //check bomb collider
+    bomb.checkCollider(platform.platform, player1.players, stars);
 
     // spawn bubble text
     bubble1.x = player1.players.x+50;
