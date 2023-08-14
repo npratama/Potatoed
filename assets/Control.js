@@ -35,7 +35,7 @@ export class Control {
                 this.player.setVelocityY(-420);
             }
 
-            if((this.touch.pointer2.x< (Constants.BTN_UP_X + Constants.BTN_RADIUS) && this.touch.pointer2.x > (Constants.BTN_UP_X - Constants.BTN_RADIUS)) && player.body.touching.down){
+            if((this.touch.pointer2.x< (Constants.BTN_UP_X + Constants.BTN_RADIUS) && this.touch.pointer2.x > (Constants.BTN_UP_X - Constants.BTN_RADIUS)) && this.player.body.touching.down){
                 this.player.setVelocityY(-420);
             }
         } 
