@@ -143,7 +143,7 @@ function create ()
     star.init(stars, this.physics, score, bomb);
 
     //set control
-    control.init(control, key, this.input, player1.players);
+    control.init( key, this.input, player1.players);
 
     // put button icon for touch control
     var sprite1 = this.add.sprite(Constants.BTN_UP_X, Constants.BTN_UP_Y, 'btn_up');

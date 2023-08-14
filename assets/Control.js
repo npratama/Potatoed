@@ -1,14 +1,12 @@
 import * as Constants from "./Constants.js";
 
 export class Control {
-    control;
     key;
     input;
     touch;
     player;
 
-    init(control, key, input, player){
-        this.control = control ;
+    init(  key, input, player){
         // bind player
         this.player = player;
         // add keyboard
@@ -38,7 +36,7 @@ export class Control {
             }
 
             if((this.touch.pointer2.x< (Constants.BTN_UP_X + Constants.BTN_RADIUS) && this.touch.pointer2.x > (Constants.BTN_UP_X - Constants.BTN_RADIUS)) && player.body.touching.down){
-                this. player.setVelocityY(-420);
+                this.player.setVelocityY(-420);
             }
         } 
         else
