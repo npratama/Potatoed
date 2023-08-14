@@ -13,6 +13,7 @@ export class Bomb {
         this.physics = physics ;
         this.bombs = bomb;
         this.players = player;
+        this.over = false;
 
         this.spawn();
     }
