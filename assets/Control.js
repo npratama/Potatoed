@@ -1,3 +1,5 @@
+import * as Constants from "./Constants.js";
+
 export class Control {
     control;
     cursors;
@@ -18,17 +20,17 @@ export class Control {
         //if key UP pressed
         if(input.pointer1.isDown)
         {
-            if((this.input.pointer1.x < (BTN_RIGHT_X + BTN_RADIUS) && this.input.pointer1.x > (BTN_RIGHT_X-BTN_RADIUS) )){
+            if((this.input.pointer1.x < (Constants.BTN_RIGHT_X + Constants.BTN_RADIUS) && this.input.pointer1.x > (Constants.BTN_RIGHT_X - Constants.BTN_RADIUS) )){
                 player.setVelocityX(200);
                 player.anims.play('right', true);
-            } else if((this.input.pointer1.x < (BTN_LEFT_X + BTN_RADIUS) && this.input.pointer1.x > (BTN_LEFT_X - BTN_RADIUS) )){
+            } else if((this.input.pointer1.x < (Constants.BTN_LEFT_X + Constants.BTN_RADIUS) && this.input.pointer1.x > (Constants.BTN_LEFT_X - Constants.BTN_RADIUS) )){
                 player.setVelocityX(-200);
                 player.anims.play('left', true);
-            } else if((this.input.pointer1.x < (BTN_UP_X + BTN_RADIUS) && this.input.pointer1.x > (BTN_UP_X - BTN_RADIUS)) && player.body.touching.down){
+            } else if((this.input.pointer1.x < (Constants.BTN_UP_X + Constants.BTN_RADIUS) && this.input.pointer1.x > (Constants.BTN_UP_X - Constants.BTN_RADIUS)) && player.body.touching.down){
                 player.setVelocityY(-420);
             }
 
-            if((this.input.pointer2.x< (BTN_UP_X + BTN_RADIUS) && this.input.pointer2.x > (BTN_UP_X - BTN_RADIUS)) && player.body.touching.down){
+            if((this.input.pointer2.x< (Constants.BTN_UP_X + Constants.BTN_RADIUS) && this.input.pointer2.x > (Constants.BTN_UP_X - Constants.BTN_RADIUS)) && player.body.touching.down){
                 player.setVelocityY(-420);
             }
         } 
