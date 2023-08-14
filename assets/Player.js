@@ -2,13 +2,15 @@ export class Player {
     physics;
     players;
     anims;
+    bubble;
+    bubbleText
+
 
     constructor(){
        ;
     }
 
     init( physics, player, anims){
-
         this.physics = physics ;
         this.players = player;
         this.anims = anims;
@@ -23,6 +25,18 @@ export class Player {
         this.players.setCollideWorldBounds(true);
         // collider with platform
         this.physics.add.collider(this.players, platforms);
+        
+      
+        // spawn bubble text that will follow the character, shouldve been coded
+        this.bubble.x = this.players.x + 50;
+        this.bubble.y = this.players.y - 90;
+        this.bubbleText.x = this.players.x - 20;
+        this.bubbleText.y = this.players.y - 120;
+    }
+
+    setBubble(bubble, bubbleText){
+        this.bubble = bubble;
+        this.bubbleText = bubbleText;
     }
 
     spawnObject(){

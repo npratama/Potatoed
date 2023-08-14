@@ -155,8 +155,9 @@ function create ()
     scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     scoreText.setText('Score: ' + score.number);
    
-    bubble1=this.add.sprite(player1.players.x, player1.players.y, 'bubble1');
+    bubble1 = this.add.sprite(player1.players.x, player1.players.y, 'bubble1');
     text = this.add.text(16, 116, "   Me hungry !", { fontSize: '20px', fill: '#000' ,fontFamily: "comic sans"});
+    player1.setBubble(bubble1,text);
 
     timedEvent = this.time.delayedCall(3000, onEvent, [], this);
 }
@@ -178,12 +179,6 @@ function update ()
 
     //check bomb collider
     bomb.checkCollider(platform.platform, player1.players, stars);
-
-    // spawn bubble text
-    bubble1.x = player1.players.x+50;
-    bubble1.y = player1.players.y-90;
-    text.x = player1.players.x-20;
-    text.y = player1.players.y-120;
 
     // Your game scenario is just this
     // if stars are all collected, spawn more stars, spawn one more bomb
