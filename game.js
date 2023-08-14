@@ -196,4 +196,5 @@ function reloadGame(){
     // gameOver = false;
     // music.stop();
     this.scene.restart();
+    score.number = 0;
 }
