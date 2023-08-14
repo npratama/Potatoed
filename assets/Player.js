@@ -2,13 +2,13 @@ export class Player {
     physics;
     players;
     anims;
-    
+
     constructor(){
-       ; 
+       ;
     }
 
     init( physics, player, anims){
-        
+
         this.physics = physics ;
         this.players = player;
         this.anims = anims;
@@ -17,9 +17,11 @@ export class Player {
     }
 
     checkCollider(platforms){
+        // collider bounce modifier
         this.players.setBounce(0.1);
+        // collider with skybox
         this.players.setCollideWorldBounds(true);
-
+        // collider with platform
         this.physics.add.collider(this.players, platforms);
     }
 

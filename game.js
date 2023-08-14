@@ -110,6 +110,7 @@ function preload ()
     this.load.image('star', 'assets/img/star.png');
     
     this.load.image('bomb', 'assets/img/bomb.png');
+
     this.load.spritesheet('dude', 'assets/img/dude.png', { frameWidth: 60, frameHeight: 64 });
 
     this.load.image('btn_up', 'assets/img/control/btn_up.png');
@@ -184,12 +185,26 @@ function update ()
     text.x = player1.players.x-20;
     text.y = player1.players.y-120;
 
-    if(bomb.over)  this.time.delayedCall(3000, reloadGame, [], this);
+    // Your game scenario is just this
+    // if stars are all collected, spawn more stars, spawn one more bomb
+    if (star.stars.countActive(true) === 0)
+    {
+        //spawn star
+        star.spawnObject(5);
+        // spawn bomb
+        bomb.spawn();
+    }
+    else
+    // if hit the bomb
+    if(bomb.hit)  
+        this.time.delayedCall(3000, reloadGame, [], this);
+    
 }
 
 function reloadGame(){
     // gameOver = false;
     // music.stop();
+    
     scoreText.setText('Score: ' + score.number);
     score.number = 0;
     this.scene.restart();

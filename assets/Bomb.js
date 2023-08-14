@@ -2,8 +2,7 @@ export class Bomb {
     physics;
     bombs;
     players;
-
-    over = false;
+    hit = false;
     
     constructor(){
        ; 
@@ -13,8 +12,7 @@ export class Bomb {
         this.physics = physics ;
         this.bombs = bomb;
         this.players = player;
-        this.over = false;
-
+        this.hit = false;
         this.spawn();
     }
 
@@ -29,7 +27,7 @@ export class Bomb {
         this.physics.pause();
         bomb.setTint(0xff0000);
         player.anims.play('turn');
-        this.over = true;
+        this.hit = true;
     }
 
     spawn(){

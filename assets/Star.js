@@ -17,7 +17,7 @@ export class Star {
         this.spawnObject(1);
     }
     
-    checkCollider(platforms, player, bomb){
+    checkCollider(platforms, player){
         //apply collider againts platform
         this.physics.add.collider(this.stars, platforms);
 
@@ -34,16 +34,7 @@ export class Star {
         this.score.number += 10;
         // console.log(this.score.number);
         
-        // if stars are all collected, spawn bomb
-        if (this.stars.countActive(true) === 0)
-        {
-      
-            //spawn star
-            this.spawnObject(5);
-
-            // spawn bomb
-            this.bomb.spawn();
-        }
+        
     }
 
     spawnObject(cnt){
@@ -51,7 +42,7 @@ export class Star {
         this.stars = this.physics.add.group({
             key: 'star',
             repeat: cnt,
-            setXY: { x: Math.floor(Math.random() * 800), y: 0, stepX: 50 }
+            setXY: { x: Math.floor(Math.random() * 1000), y: 0, stepX: 50 }
         });
 
         //apply physics
@@ -59,6 +50,7 @@ export class Star {
             child.setBounce(1);
             child.setVelocity(Phaser.Math.Between(-200, 200), 1);
             child.setCollideWorldBounds(true);
+            child.rotation = Math.random() * 360;
         });
     }
 
