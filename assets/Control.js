@@ -5,60 +5,67 @@ export class Control {
     key;
     input;
     touch;
+    player;
 
-    init(control, key, input){
+    init(control, key, input, player){
         this.control = control ;
+        // bind player
+        this.player = player;
+        // add keyboard
         this.key = key;
         this.input = input;
-        
+        // add pointer
+        this.input.addPointer(3);
+
+        this.touch = this.input;
         this.key = this.input.keyboard.createCursorKeys();
-        this.touch = this.input.addPointer(3);
     }
 
-    Movement(player, input){
+    Movement(){
         //define action
 
-        //if key UP pressed
-        if(input.pointer1.isDown)
+        // if key UP pressed
+        if(this.touch.pointer1.isDown)
         {
-            if((touch.pointer1.x < (Constants.BTN_RIGHT_X + Constants.BTN_RADIUS) && touch.pointer1.x > (Constants.BTN_RIGHT_X - Constants.BTN_RADIUS) )){
-                player.setVelocityX(200);
-                player.anims.play('right', true);
-            } else if((touch.pointer1.x < (Constants.BTN_LEFT_X + Constants.BTN_RADIUS) && touch.pointer1.x > (Constants.BTN_LEFT_X - Constants.BTN_RADIUS) )){
-                player.setVelocityX(-200);
-                player.anims.play('left', true);
-            } else if((touch.pointer1.x < (Constants.BTN_UP_X + Constants.BTN_RADIUS) && touch.pointer1.x > (Constants.BTN_UP_X - Constants.BTN_RADIUS)) && player.body.touching.down){
-                player.setVelocityY(-420);
+            if((this.touch.pointer1.x < (Constants.BTN_RIGHT_X + Constants.BTN_RADIUS) && this.touch.pointer1.x > (Constants.BTN_RIGHT_X - Constants.BTN_RADIUS) )){
+                this.player.setVelocityX(200);
+                this.player.anims.play('right', true);
+            } else if((this.touch.pointer1.x < (Constants.BTN_LEFT_X + Constants.BTN_RADIUS) && this.touch.pointer1.x > (Constants.BTN_LEFT_X - Constants.BTN_RADIUS) )){
+                this.player.setVelocityX(-200);
+                this.player.anims.play('left', true);
+            } else if((this.touch.pointer1.x < (Constants.BTN_UP_X + Constants.BTN_RADIUS) && this.touch.pointer1.x > (Constants.BTN_UP_X - Constants.BTN_RADIUS)) && player.body.touching.down){
+                this.player.setVelocityY(-420);
             }
 
-            if((touch.pointer2.x< (Constants.BTN_UP_X + Constants.BTN_RADIUS) && touch.pointer2.x > (Constants.BTN_UP_X - Constants.BTN_RADIUS)) && player.body.touching.down){
-                player.setVelocityY(-420);
+            if((this.touch.pointer2.x< (Constants.BTN_UP_X + Constants.BTN_RADIUS) && this.touch.pointer2.x > (Constants.BTN_UP_X - Constants.BTN_RADIUS)) && player.body.touching.down){
+                this. player.setVelocityY(-420);
             }
         } 
         else
         // switch to "neutral position"
         {
-            input.pointer1.x=0;
-            input.pointer2.x=0;
-            player.setVelocityX(0);
+            this.touch.pointer1.x=0;
+            this.touch.pointer2.x=0;
+            this.player.setVelocityX(0);
             // player.anims.play('turn');
         }	
 
         // if keyboard left pressed
         if (this.key.left.isDown)
         {
-            player.setVelocityX(-200);
-            player.anims.play('left', true);
+            
+            this.player.setVelocityX(-200);
+            this.player.anims.play('left', true);
         }
         else if (this.key.right.isDown)
         {
-            player.setVelocityX(200);
-            player.anims.play('right', true);
+            this.player.setVelocityX(200);
+            this.player.anims.play('right', true);
         }
         
-        if (this.key.up.isDown && player.body.touching.down)
+        if (this.key.up.isDown &&this.player.body.touching.down)
         {
-            player.setVelocityY(-420);
+            this.player.setVelocityY(-420);
         } 
     }
     

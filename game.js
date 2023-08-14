@@ -143,7 +143,8 @@ function create ()
     star.init(stars, this.physics, score, bomb);
 
     //set control
-    control.init(control, key, this.input);
+    control.init(control, key, this.input, player1.players);
+
     // put button icon for touch control
     var sprite1 = this.add.sprite(Constants.BTN_UP_X, Constants.BTN_UP_Y, 'btn_up');
     var sprite2 = this.add.sprite(Constants.BTN_LEFT_X,  Constants.BTN_LEFT_Y, 'btn_left'); 
@@ -166,7 +167,7 @@ function update ()
     scoreText.setText('Score: ' + score.number);
 
     //player movement handler
-    control.Movement(player1.players, this.input, key);
+    control.Movement();
 
     //check player collider
     player1.checkCollider(platform.platform);
